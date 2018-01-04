@@ -3,12 +3,17 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
 
-class App extends React.Component {
-	render() {
+class App extends React.Component{
+	constructor(props){
+		super(props)
+		this.state = {};
+	}
+
+	render(){
 		return (
-			<p>test</p>
-			)
+			<div> hi sdfs </div>
+		)
 	}
 }
 
-ReactDOM.render(App, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'))
