@@ -6,7 +6,7 @@ import $ from 'jquery';
 class App extends React.Component {
 	render() {
 		return (
-
+			<p>test</p>
 			)
 	}
 }
