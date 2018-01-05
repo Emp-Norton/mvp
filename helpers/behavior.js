@@ -7,28 +7,36 @@ var checkForGameMatches = function(current, players){
 
 
 var checkForStyleMatches = function(current, players){
+	var current = current[0];
 	var styleMatches = [];
 	players.forEach(player =>{
-		if (player.playstyle === current.playstyle){
+		if (player.playstyle == current.playstyle){
 			styleMatches.push(player)
 		}
 	})
-	console.log(styleMatches);
+	return styleMatches;
 }
 
 var findMatches = function(current){
 
-	var players = db.User.find(function(err, data){
+	var currentPlayer = db.User.find({uname: current}, function(err, data){
 		if (!err){
-			var playerData = data;
-			var currentPlayer = current;
-			
+			var currentPlayer = data;
+			var players = db.User.find(function(err, data){
+			if (!err){
+				var playerData = data;
+				var styleMatches = checkForStyleMatches(currentPlayer, playerData);
+				
 
+			  } else {
+				  console.log('failed because of ', err);
+			  }
+		  });
 
-		} else {
-			console.log('failed because of ', err);
-		}
-	});
+	  }
+	})
+
+	
 	
 }
 

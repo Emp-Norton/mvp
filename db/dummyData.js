@@ -33,7 +33,7 @@ var data = [
 			{name: "Game #12", id: 12},
 			{name: "Game #14", id: 14}
 		],
-		playstyle: 2,
+		playstyle: 1,
 		imgUrl: './client/dist/avatar.jpg'
 	},
 

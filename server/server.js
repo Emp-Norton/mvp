@@ -4,6 +4,7 @@ var path = require('path');
 var helper = require('../helpers/behavior')
 var parser = require('body-parser');
 
+
 var app = express();
 
 
@@ -15,9 +16,32 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 const hostname = '127.0.0.1';
 const port = 1234;
 
+
+app.get('/matches/:current', function(req, res){
+	var current = req.params.current;
+	console.log('seding to helper ', current)
+	helper.findMatches(current)
+})
+
+app.get('/users/:username', function(req, res){ // find specific user + render playerinfo
+	console.log('serving GET request for ', req.url)
+		var submittedUsername = req.params.username;
+		console.log(submittedUsername)
+		db.User.find({uname: submittedUsername}, function(err, data){
+			if (!err){
+				console.log('found', data)
+				res.send(data);
+			} else {
+				console.log('unable to find user with steamId: ', sid);
+				res.end('Not found')
+			}
+		})
+})
+
 app.get('/users/:steamId', function(req, res){ // find specific user + render playerinfo
 	console.log('serving GET request for ', req.url)
 		var sid = req.params.steamId;
+		console.log('get request', typeof sid)
 		db.User.find({steamId: sid}, function(err, data){
 			if (!err){
 				console.log('found', data)
@@ -43,7 +67,7 @@ app.get('/users', function(req, res){ // returning all users
 
 app.post('/', function(req, res){ // register a new user
 	var steamId = req.body.steamid
-	console.log('looking for ', steamId)
+	console.log('looking for ',typeof steamId)
 	db.User.find({steamId: steamId}, function(err, data){ // finding 'current' user
 		if (!err){
 			if (data.length > 0){

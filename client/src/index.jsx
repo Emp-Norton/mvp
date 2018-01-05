@@ -5,6 +5,8 @@ import PlayerList from './components/PlayerList.jsx'
 import PlayerInfo from './components/PlayerInfo.jsx'
 
 
+
+
 class App extends React.Component{
 	constructor(props){
 		super(props)
@@ -25,10 +27,31 @@ class App extends React.Component{
 		})
 	}
 
-	getPlayerInfo(steamid){
+		getPlayerInfoBySteamId(steamid){
+		console.log('looking for ', steamid)
 		$.get(`/users/${steamid}`, function(data){
-			var player = data[0];
-			ReactDOM.render(<PlayerInfo player={player} />, document.getElementById('app'))
+			console.log(data)
+			if (typeof data === "object" && data.length){
+				var player = data[0];
+				ReactDOM.render(<PlayerInfo player={player} />, document.getElementById('app'))
+			}
+			console.log('player not found') // display 'register' component ?
+			$('#searchUsersField').val('');
+		})
+	}
+
+	getPlayerInfoByUsername(username){
+		console.log('looking for ', username)
+		$.get(`/users/${username}`, function(data){
+			console.log(data)
+			if (typeof data === "object" && data.length){
+				var player = data[0];
+				ReactDOM.render(<PlayerInfo player={player} />, document.getElementById('app'))
+			} else {
+				console.log('player not found') // display 'register' component ?
+			}
+			
+			$('#searchUsersField').val('');
 		})
 	}
 
@@ -53,10 +76,13 @@ class App extends React.Component{
 				}> Register a new user </button>
 			</div>
 			<div className="searchUsersForm">
-				<input type="text" placeholder="enter a username"/>
-				<button id="searchUsers"> Search for user </button>
+				<input type="text" id="searchUsersField" placeholder="enter a username"/>
+				<button id="searchUsers" onClick={ () => {
+					this.getPlayerInfoByUsername($('#searchUsersField').val()); // by id or un?
+				}
+				}> Search for user </button>
 			</div>
-				<PlayerList list={this.state.players} getPlayerInfo={this.getPlayerInfo} />
+				<PlayerList list={this.state.players} getPlayerInfo={this.getPlayerInfoByUsername} />
 		  </div>
 		)
 	}

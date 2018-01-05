@@ -6,7 +6,7 @@ var PlayerListEntry = (props) => (
 	
 		<div className="playerEntry" onClick={ () => {
 			console.log('this should render playerinfo component')
-			props.moreInfo(props.player.steamId);
+			props.moreInfo(props.player.uname);
 		}}> 
 
       <div className="playerImage">

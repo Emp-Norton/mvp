@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GameList from './GameList.jsx';
+import $ from 'jquery';
+
 
 var PlayerInfo = (props) => (
 	<div>
@@ -9,6 +11,9 @@ var PlayerInfo = (props) => (
 		<div>
 			<button className="makePlayerMatch" onClick={ () => {
 				console.log('this should find matches for this player')
+				$.get(`/matches/${props.player.uname}`, function(data){
+					console.log('bingo', data)
+				})
 			}
 			}>Find matching players!</button>
 		</div>
@@ -17,6 +22,7 @@ var PlayerInfo = (props) => (
 				<GameList games={props.player.games} />
 			}
 		</div>
+		Playstyle Signature: {props.player.playstyle}
 	</div>
 	)
 
