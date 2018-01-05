@@ -22,7 +22,7 @@ var findMatches = function(current){
 		if (!err){
 			var playerData = data;
 			var currentPlayer = current;
-
+			
 
 
 		} else {

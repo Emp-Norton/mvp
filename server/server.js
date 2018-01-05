@@ -22,7 +22,7 @@ app.get('/users/:steamId', function(req, res){
 			var sid = req.params.steamId;
 			db.User.find({steamId: sid}, function(err, data){
 				if (!err){
-					console.log(data)
+					console.log('found', data)
 					res.send(data);
 				} else {
 					console.log('unable to find user with steamId: ', sid);
@@ -48,10 +48,22 @@ app.get('/users', function(req, res){
 })
 
 app.post('/', function(req, res){
-	var user = req.body.username // find the name being submitted and pass it in to makeMatches
+	var user = req.body.username 
 	var steamId = req.body.steamid
-	console.log(user, steamId)
-	//helper.findMatches(steamId);
+	console.log('looking for ', user, steamId)
+	db.User.find({uname: user}, function(err, data){ // finding 'current' user
+		if (!err){
+			if (data.length){
+				var current = data[0];
+				console.log('found ', data)
+			} else { // user not found in DB
+				console.log('unable to find user: ', user) // call gitAPI
+			}
+		} else {
+			console.log('error ' + err);
+		}
+		res.end();
+	})
 })
 
 app.listen(port, function(){

@@ -5,7 +5,7 @@ var PlayerList = (props) => (
 
 		<div className="container">
 			{	props.list && props.list.map(entry =>  
-				<PlayerListEntry player={entry} />
+				<PlayerListEntry player={entry} moreInfo={props.getPlayerInfo} />
 				)}
 		</div>
 	
