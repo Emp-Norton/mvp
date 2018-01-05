@@ -64,6 +64,13 @@ app.get('/users', function(req, res){ // returning all users
 	})
 })
 
+app.post('/save', function(req, res){
+
+	var playerToSave = req.body.playerObject;
+	console.log('saving, ', playerToSave)
+
+})
+
 app.post('/', function(req, res){ // register a new user
 	var steamId = req.body.steamid
 	console.log('looking for ',typeof steamId)

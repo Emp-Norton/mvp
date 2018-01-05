@@ -60,12 +60,19 @@ class App extends React.Component{
 		})
 	}
 
+	saveToDb(playerObject){
+		console.log('ah')
+		$.post('/save', {playerObject}, function(data){
+			console.log('saved', data)
+		})
+	}
+
 	registerPlayer(steamid){
 		$.post('/', {steamid}, function(data){
 			if (typeof data === "object"){
 				ReactDOM.render(<PlayerInfo update={this.updateMatches} player={data} />, document.getElementById('app'))
 			} else {
-				ReactDOM.render(<RegisterPlayer />, document.getElementById('app'))
+				ReactDOM.render(<RegisterPlayer sid={steamid} register={ () => this.saveToDb}/>, document.getElementById('app'))
 			}
 		})
 	}
