@@ -13,6 +13,7 @@ var PlayerInfo = (props) => (
 				console.log('this should find matches for this player')
 				$.get(`/matches/${props.player.uname}`, function(data){
 					console.log('bingo', data)
+					//props.update(data);
 				})
 			}
 			}>Find matching players!</button>

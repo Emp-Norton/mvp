@@ -17,16 +17,16 @@ var checkForStyleMatches = function(current, players){
 	return styleMatches;
 }
 
-var findMatches = function(current){
+var findMatches = function(current, res){
 
-	var currentPlayer = db.User.find({uname: current}, function(err, data){
+	db.User.find({uname: current}, function(err, data){
 		if (!err){
 			var currentPlayer = data;
 			var players = db.User.find(function(err, data){
 			if (!err){
 				var playerData = data;
 				var styleMatches = checkForStyleMatches(currentPlayer, playerData);
-				
+				res.send(styleMatches)
 
 			  } else {
 				  console.log('failed because of ', err);

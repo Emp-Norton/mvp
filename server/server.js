@@ -19,8 +19,7 @@ const port = 1234;
 
 app.get('/matches/:current', function(req, res){
 	var current = req.params.current;
-	console.log('seding to helper ', current)
-	helper.findMatches(current)
+	var styleMatches = helper.findMatches(current, res)
 })
 
 app.get('/users/:username', function(req, res){ // find specific user + render playerinfo
