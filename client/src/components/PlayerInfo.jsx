@@ -7,7 +7,7 @@ import $ from 'jquery';
 var PlayerInfo = (props) => (
 	<div>
 		<h1> {props.player.uname} </h1>
-		<img src={props.player.imgUrl} alt="picture goes here" />
+		<img src='https://vignette.wikia.nocookie.net/happytreefanon/images/8/8e/Luigi-circle.jpg/revision/latest?cb=20131120144656' alt="picture goes here" />
 		<div>
 			<button className="makePlayerMatch" onClick={ () => {
 				console.log('this should find matches for this player')

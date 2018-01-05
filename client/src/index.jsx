@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import PlayerList from './components/PlayerList.jsx'
 import PlayerInfo from './components/PlayerInfo.jsx'
+import RegisterPlayer from './components/RegisterPlayer.jsx'
 
 
 
@@ -64,7 +65,7 @@ class App extends React.Component{
 			if (typeof data === "object"){
 				ReactDOM.render(<PlayerInfo update={this.updateMatches} player={data} />, document.getElementById('app'))
 			} else {
-				ReactDOM.render(<App />, document.getElementById('app'))
+				ReactDOM.render(<RegisterPlayer />, document.getElementById('app'))
 			}
 		})
 	}
@@ -86,7 +87,7 @@ class App extends React.Component{
 				}
 				}> Search for user </button>
 			</div>
-				<PlayerList list={this.state.players} getPlayerInfo={this.getPlayerInfoByUsername} />
+				<PlayerList list={this.state.players} update={this.updateMatches} getPlayerInfo={this.getPlayerInfoByUsername} />
 		  </div>
 		)
 	}

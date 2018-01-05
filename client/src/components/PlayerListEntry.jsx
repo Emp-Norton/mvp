@@ -1,7 +1,6 @@
 import React from 'react';
 
 
-
 var PlayerListEntry = (props) => (
 	
 		<div className="playerEntry" onClick={ () => {
@@ -9,7 +8,7 @@ var PlayerListEntry = (props) => (
 		}}> 
 
       <div className="playerImage">
-      	<img src={props.player.imgUrl} alt="Uh-oh! No image found."/>
+      	<img src="https://vignette.wikia.nocookie.net/happytreefanon/images/8/8e/Luigi-circle.jpg/revision/latest?cb=20131120144656" alt="Uh-oh! No image found."/>
       </div>
       <hr/>
       <p> Username: {props.player.uname} </p>

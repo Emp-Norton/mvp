@@ -71,6 +71,19 @@ var data = [
 		],
 		playstyle: 2,
 		imgUrl: './client/dist/avatar.jpg'
+	},
+
+	{
+		uname: 'Ty A. Shu',
+		steamId: 12345678912345555,
+		games: [
+			{name: "Game #12", id: 12},
+			{name: "Game #14", id: 14},
+			{name: "Game #1", id: 1},
+			{name: "Game #2", id: 2}
+		],
+		playstyle: 4,
+		imgUrl: './client/dist/avatar.jpg'
 	}
 ]
 

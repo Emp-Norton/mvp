@@ -16,7 +16,9 @@ var checkForGameMatches = function(current, players){
 				console.log(current[0].uname +' shared '+ game.name + " with " + player.uname)
 				numberOfSharedGames++;
 				if (numberOfSharedGames >= 3 || 
-					selectedPlayerGames.length < 3 && numberOfSharedGames > 0){
+					selectedPlayerGames.length <= 3 && 
+					numberOfSharedGames > 0 && 
+					playerGames.length <= 3){
 					if (player.uname !== current[0].uname &&
 						gameMatches.indexOf(player) == -1
 						){
