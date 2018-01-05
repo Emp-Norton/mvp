@@ -11,7 +11,8 @@ var data = [
 			{name: "Game #3", id: 3},
 			{name: "Game #4", id: 4}
 		],
-		playstyle: 2
+		playstyle: 2,
+		imgUrl: './client/dist/avatar.jpg'
 	},
 
 	{
@@ -21,7 +22,8 @@ var data = [
 			{name: "Game #1", id: 1},
 			{name: "Game #2", id: 2},
 		],
-		playstyle: 2
+		playstyle: 2,
+		imgUrl: './client/dist/avatar.jpg'
 	},
 
 	{
@@ -31,7 +33,8 @@ var data = [
 			{name: "Game #12", id: 12},
 			{name: "Game #14", id: 14}
 		],
-		playstyle: 2
+		playstyle: 2,
+		imgUrl: './client/dist/avatar.jpg'
 	},
 
 	{
@@ -43,7 +46,8 @@ var data = [
 			{name: "Game #5", id: 5},
 			{name: "Game #6", id: 6}
 		],
-		playstyle: 2
+		playstyle: 2,
+		imgUrl: './client/dist/avatar.jpg'
 	},
 
 	{
@@ -52,7 +56,8 @@ var data = [
 		games: [
 			{name: "Game #1", id: 1}
 		],
-		playstyle: 2
+		playstyle: 2,
+		imgUrl: './client/dist/avatar.jpg'
 	},
 
 	{
@@ -64,7 +69,8 @@ var data = [
 			{name: "Game #7", id: 7},
 			{name: "Game #8", id: 8}
 		],
-		playstyle: 2
+		playstyle: 2,
+		imgUrl: './client/dist/avatar.jpg'
 	}
 ]
 

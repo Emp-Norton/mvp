@@ -12,7 +12,8 @@ var userSchema = mongoose.Schema({
 	uname: {type: String, unique: true},
 	games: [{name: String, id: Number}],
 	steamId: Number,
-	playstyle: Number
+	playstyle: Number,
+	imgUrl: String
 })
 
 var User = mongoose.model('User', userSchema);
