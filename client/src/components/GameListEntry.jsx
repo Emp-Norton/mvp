@@ -1,7 +1,7 @@
 import React from 'react';
 
 var GameListEntry = (props) => (
-		<div>
+		<div className="gameListEntry">
 			{props.game.name}
 		</div>
 	)

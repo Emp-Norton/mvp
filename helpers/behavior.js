@@ -3,6 +3,32 @@ var db = require('../db/database');
 
 var checkForGameMatches = function(current, players){
 	var gameMatches = [];
+	var selectedPlayerGames = current[0].games.sort(function(a, b){
+		return a.id - b.id});
+
+	players.forEach(player => {
+		var numberOfSharedGames = 0;
+		var playerGames = player.games.sort(function(a, b){
+		return a.id - b.id});
+		selectedPlayerGames.forEach(game =>{
+			playerGames.forEach(pgame => {
+				if (game.id == pgame.id){
+				console.log(current[0].uname +' shared '+ game.name + " with " + player.uname)
+				numberOfSharedGames++;
+				if (numberOfSharedGames >= 3 || 
+					selectedPlayerGames.length < 3 && numberOfSharedGames > 0){
+					if (player.uname !== current[0].uname &&
+						gameMatches.indexOf(player) == -1
+						){
+						gameMatches.push(player);
+					}
+				}
+			}
+			})
+		})
+	})
+console.log(gameMatches)
+	return gameMatches;
 }
 
 
@@ -26,6 +52,7 @@ var findMatches = function(current, res){
 			if (!err){
 				var playerData = data;
 				var styleMatches = checkForStyleMatches(currentPlayer, playerData);
+				checkForGameMatches(currentPlayer, playerData)
 				res.send(styleMatches)
 
 			  } else {

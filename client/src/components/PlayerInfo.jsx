@@ -13,7 +13,7 @@ var PlayerInfo = (props) => (
 				console.log('this should find matches for this player')
 				$.get(`/matches/${props.player.uname}`, function(data){
 					console.log('bingo', data)
-					//props.update(data);
+					props.update(data); // passing matched player data to render
 				})
 			}
 			}>Find matching players!</button>
@@ -27,4 +27,4 @@ var PlayerInfo = (props) => (
 	</div>
 	)
 
-export default PlayerInfo;
+export default PlayerInfo; 	

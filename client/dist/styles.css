@@ -1,4 +1,9 @@
-
+.gameListEntry {
+	display: inline-block;
+	border: solid 2px grey;
+	border-radius: 5px;
+	padding: 5px;
+}
 
 .playerEntry {
 	display: inline-block;

@@ -5,8 +5,7 @@ import React from 'react';
 var PlayerListEntry = (props) => (
 	
 		<div className="playerEntry" onClick={ () => {
-			console.log('this should render playerinfo component')
-			props.moreInfo(props.player.uname);
+			props.moreInfo(props.player.uname); // get individual user info
 		}}> 
 
       <div className="playerImage">

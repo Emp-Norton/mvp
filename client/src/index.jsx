@@ -19,6 +19,10 @@ class App extends React.Component{
 		this.getPlayers();
 	}
 
+	updateMatches(matchesArray){
+		console.log(matchesArray);
+	}
+
 	getPlayers(){
 		var app = this;
 		$.get('/users', function(data){
@@ -33,7 +37,7 @@ class App extends React.Component{
 			console.log(data)
 			if (typeof data === "object" && data.length){
 				var player = data[0];
-				ReactDOM.render(<PlayerInfo player={player} />, document.getElementById('app'))
+				ReactDOM.render(<PlayerInfo update={this.updateMatches} player={player} />, document.getElementById('app'))
 			}
 			console.log('player not found') // display 'register' component ?
 			$('#searchUsersField').val('');
@@ -46,7 +50,7 @@ class App extends React.Component{
 			console.log(data)
 			if (typeof data === "object" && data.length){
 				var player = data[0];
-				ReactDOM.render(<PlayerInfo player={player} />, document.getElementById('app'))
+				ReactDOM.render(<PlayerInfo update={this.updateMatches} player={player} />, document.getElementById('app'))
 			} else {
 				console.log('player not found') // display 'register' component ?
 			}
@@ -58,7 +62,7 @@ class App extends React.Component{
 	registerPlayer(steamid){
 		$.post('/', {steamid}, function(data){
 			if (typeof data === "object"){
-				ReactDOM.render(<PlayerInfo player={data} />, document.getElementById('app'))
+				ReactDOM.render(<PlayerInfo update={this.updateMatches} player={data} />, document.getElementById('app'))
 			} else {
 				ReactDOM.render(<App />, document.getElementById('app'))
 			}
