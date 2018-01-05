@@ -4,6 +4,7 @@ import $ from 'jquery';
 
 var RegisterPlayer = (props) => (
 	<div>
+	<h1>{props.notfound}</h1>
 	<h3> New Player Registration </h3>
 		<input type="text" id="registerUsernameField" placeholder="Enter username"/>
 

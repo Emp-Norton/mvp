@@ -6,11 +6,18 @@
 }
 
 .playerEntry {
-	display: inline-block;
+
 	border: solid 2px grey;
 	border-radius: 5px;
 	padding: 5px;
+	height: 200px;
+	width: 500px;
 }
+
+.home {
+	top: 15px;
+}
+
 
 .playerImage {
 	float: left;

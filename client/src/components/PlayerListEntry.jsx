@@ -1,4 +1,5 @@
 import React from 'react';
+import NoMatches from './NoMatches.jsx'
 
 
 var PlayerListEntry = (props) => (

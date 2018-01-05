@@ -8,7 +8,7 @@ import RegisterPlayer from './components/RegisterPlayer.jsx'
 
 
 
-class App extends React.Component{
+export default class App extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {};
@@ -19,20 +19,22 @@ class App extends React.Component{
 		console.log('getting player list')
 		if (!this.state.players){
 				this.getPlayers();
-		}
+		} 
 	
 	}
 
-	updateMatches(matchesArray){
-		console.log('ud');
-	}
 
-	getPlayers(){
+	getPlayers(data){
 		var app = this;
-		$.get('/users', function(data){
+		if (data){
+			app.setState({players: data})
+		} else {
+			$.get('/users', function(data){
 			console.log('got list')
 				app.setState({players: data})
 		})
+		}
+		
 	}
 
 		getPlayerInfoBySteamId(steamid){
@@ -42,7 +44,7 @@ class App extends React.Component{
 			console.log(data)
 			if (typeof data === "object" && data.length){
 				var player = data[0];
-				ReactDOM.render(<PlayerInfo update={app.updateMatches} player={player} />, document.getElementById('app'))
+				ReactDOM.render(<PlayerInfo getPlayerInfoByUsername={app.getPlayerInfoByUsername} player={player} />, document.getElementById('app'))
 			}
 			console.log('player not found') // display 'register' component ?
 			$('#searchUsersField').val('');
@@ -56,9 +58,9 @@ class App extends React.Component{
 			console.log(data)
 			if (typeof data === "object" && data.length){
 				var player = data[0];
-				ReactDOM.render(<PlayerInfo update={app.updateMatches} player={player} />, document.getElementById('app'))
+				ReactDOM.render(<PlayerInfo getPlayerInfoByUsername={app.getPlayerInfoByUsername} player={player} />, document.getElementById('app'))
 			} else {
-				console.log('player not found') // display 'register' component ?
+				ReactDOM.render(<RegisterPlayer notfound="Player not found. Register?" register={ app.saveToDb}/>, document.getElementById('app'))
 			}
 			
 			$('#searchUsersField').val('');
@@ -69,7 +71,7 @@ class App extends React.Component{
 		var app = this;
 		$.post('/save', {playerObject}, function(data){
 			console.log('saved', data)
-			ReactDOM.render(<PlayerInfo update={app.updateMatches} player={data} />, document.getElementById('app'))
+			ReactDOM.render(<PlayerInfo getPlayerInfoByUsername={app.getPlayerInfoByUsername}  player={data} />, document.getElementById('app'))
 
 		})
 	}
@@ -78,7 +80,7 @@ class App extends React.Component{
 		var app = this;
 		$.post('/', {steamid}, function(data){
 			if (typeof data === "object"){
-				ReactDOM.render(<PlayerInfo update={app.updateMatches} player={data} />, document.getElementById('app'))
+				ReactDOM.render(<PlayerInfo getPlayerInfoByUsername={app.getPlayerInfoByUsername}  player={data} />, document.getElementById('app'))
 			} else {
 				ReactDOM.render(<RegisterPlayer sid={steamid} register={ app.saveToDb}/>, document.getElementById('app'))
 			}
@@ -87,7 +89,7 @@ class App extends React.Component{
 
 	render(){
 		return (
-			<div> 
+			<div className="container"> 
 			<div className="registerUserForm">
 				<input type="text" placeholder="enter steamid" id="registerSteamId"/>
 				<button id="registerUser" onClick={ () => {

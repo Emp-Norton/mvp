@@ -38,7 +38,7 @@ var checkForStyleMatches = function(current, players){
 	var current = current[0];
 	var styleMatches = [];
 	players.forEach(player =>{
-		if (player.playstyle == current.playstyle){
+		if (Math.abs(player.playstyle - current.playstyle) < 3){
 			styleMatches.push(player)
 		}
 	})
