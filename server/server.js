@@ -15,27 +15,21 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 const hostname = '127.0.0.1';
 const port = 1234;
 
-app.get('/users/:steamId', function(req, res){
+app.get('/users/:steamId', function(req, res){ // find specific user + render playerinfo
 	console.log('serving GET request for ', req.url)
-	db.User.find(function(err, data){
-		if (!err){
-			var sid = req.params.steamId;
-			db.User.find({steamId: sid}, function(err, data){
-				if (!err){
-					console.log('found', data)
-					res.send(data);
-				} else {
-					console.log('unable to find user with steamId: ', sid);
-					res.end('Not found')
-				}
-			})
-		} else {
-			console.log('error ' + err);
-		}
-	})
+		var sid = req.params.steamId;
+		db.User.find({steamId: sid}, function(err, data){
+			if (!err){
+				console.log('found', data)
+				res.send(data);
+			} else {
+				console.log('unable to find user with steamId: ', sid);
+				res.end('Not found')
+			}
+		})
 })
 
-app.get('/users', function(req, res){
+app.get('/users', function(req, res){ // returning all users
 	console.log('serving GET request for ', req.url)
 
 	db.User.find(function(err, data){
@@ -47,17 +41,21 @@ app.get('/users', function(req, res){
 	})
 })
 
-app.post('/', function(req, res){
-	var user = req.body.username 
+app.post('/', function(req, res){ // register a new user
 	var steamId = req.body.steamid
-	console.log('looking for ', user, steamId)
-	db.User.find({uname: user}, function(err, data){ // finding 'current' user
+	console.log('looking for ', steamId)
+	db.User.find({steamId: steamId}, function(err, data){ // finding 'current' user
 		if (!err){
-			if (data.length){
-				var current = data[0];
-				console.log('found ', data)
+			if (data.length > 0){
+				var foundUser = data[0];
+				console.log('found', foundUser)
+				res.send(foundUser);
 			} else { // user not found in DB
-				console.log('unable to find user: ', user) // call gitAPI
+				console.log('not in DB, getting data on: ', steamId)
+				res.send('')
+				// call gitAPI
+					// deposit results into DB
+					// call root get to re-render with new info
 			}
 		} else {
 			console.log('error ' + err);

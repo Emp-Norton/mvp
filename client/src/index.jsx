@@ -32,12 +32,25 @@ class App extends React.Component{
 		})
 	}
 
+	registerPlayer(steamid){
+		$.post('/', {steamid}, function(data){
+			if (typeof data === "object"){
+				ReactDOM.render(<PlayerInfo player={data} />, document.getElementById('app'))
+			} else {
+				ReactDOM.render(<App />, document.getElementById('app'))
+			}
+		})
+	}
+
 	render(){
 		return (
 			<div> 
 			<div className="registerUserForm">
-				<input type="text" placeholder="enter steamid"/>
-				<button id="registerUser"> Register a new user </button>
+				<input type="text" placeholder="enter steamid" id="registerSteamId"/>
+				<button id="registerUser" onClick={ () => {
+					this.registerPlayer($('#registerSteamId').val())
+				}
+				}> Register a new user </button>
 			</div>
 			<div className="searchUsersForm">
 				<input type="text" placeholder="enter a username"/>
