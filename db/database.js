@@ -11,8 +11,8 @@ connection.once('open', function callback(){
 var userSchema = mongoose.Schema({
 	uname: {type: String, unique: true},
 	games: [{name: String, id: Number}],
-	steamId: Number,
-	playstyle: Number
+	steamId: String,
+	playstyle: String
 })
 
 var User = mongoose.model('User', userSchema);

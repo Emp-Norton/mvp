@@ -14,11 +14,11 @@ var RegisterPlayer = (props) => (
 			var playstyle = $('#registerPlaystyle').val().length ?  $('#registerPlaystyle').val() : 3
 			var newPlayer = {
 				uname: uname,
-				steamId: parseInt(steamid),
+				steamId: steamid,
 				games: [],
 				playstyle: playstyle
 			}
-			props.register(newPlayer);
+			props.register(newPlayer)
 		}}> Sign me up!</button>
 		<hr/>
 		<p>How seriously do you take your gameplay, on a scale from 1 to 5? </p>

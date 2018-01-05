@@ -54,8 +54,17 @@ var findMatches = function(current, res){
 			if (!err){
 				var playerData = data;
 				var styleMatches = checkForStyleMatches(currentPlayer, playerData);
-				checkForGameMatches(currentPlayer, playerData)
-				res.send(styleMatches)
+				var gameMatches = checkForGameMatches(currentPlayer, playerData)
+				var perfectMatches = [];
+				gameMatches.forEach(gmatch => {
+					styleMatches.forEach(smatch => {
+						if (gmatch == smatch){
+							console.log('perfect', smatch)
+							perfectMatches.push(smatch)
+						}
+					})
+				})
+				res.send(perfectMatches)
 
 			  } else {
 				  console.log('failed because of ', err);

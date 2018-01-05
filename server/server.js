@@ -65,9 +65,25 @@ app.get('/users', function(req, res){ // returning all users
 })
 
 app.post('/save', function(req, res){
+	console.log(req.body);
+	var playerObj = req.body;
 
-	var playerToSave = req.body.playerObject;
-	console.log('saving, ', playerToSave)
+	var toSave = new db.User({
+		uname: playerObj['playerObject[uname]'],
+		steamId: playerObj['playerObject[steamId]'],
+		games: [],
+		playstyle: playerObj['playerObject[playstyle]']
+	});
+
+	console.log('saving, ', toSave)
+	toSave.save(function(err, data){
+		if (err){
+			console.log('error ', err)
+		} else {
+			console.log('saved')
+		}
+	})
+	res.send(toSave)
 
 })
 
